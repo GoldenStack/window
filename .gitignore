@@ -1,0 +1,8 @@
+*.class
+*.zip
+*.rar
+*.tar.gz
+
+.gradle/
+.idea/
+build/
