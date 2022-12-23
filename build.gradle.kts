@@ -5,6 +5,7 @@ plugins {
 
 group = "dev.goldenstack.window"
 version = "1.0"
+description = "Useful API for Minestom inventories"
 
 java {
     withJavadocJar()
