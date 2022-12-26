@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.IntImmutableList;
 import net.minestom.server.inventory.AbstractInventory;
 import net.minestom.server.item.ItemStack;
+import net.minestom.server.item.StackingRule;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 /**
  * Provides a view into an inventory via the manipulation of slot IDs. They aren't tied to any specific inventory, so it
  * must be provided with each usage of the view that would need an inventory.<br>
- * <b>All valid slot IDs, regardless of the context, should be greater than or equal to zero.</b>
+ * <b>All valid slot IDs, regardless of the context, should be greater than or equal to zero.</b><br>
+ * Note: Any changes that involve multiple slots may require clients to make sure that other threads can't mess them up.
  */
 public interface InventoryView {
 
@@ -196,6 +198,48 @@ public interface InventoryView {
     default void set(@NotNull AbstractInventory inventory, int localSlot, @NotNull ItemStack itemStack) {
         // No need to verify if the slot is valid in the inventory because the inventory will handle it
         inventory.setItemStack(localToExternal(localSlot), itemStack);
+    }
+
+    /**
+     * Adds the provided item to the provided inventory, reducing the count of the item when applicable, following the
+     * rules of the stacking rule ({@link StackingRule#get()}).
+     * @param inv the inventory to add items to
+     * @param item the item to add to the inventory
+     * @return the remaining item after adding
+     */
+    @SuppressWarnings("SynchronizationOnLocalVariableOrMethodParameter")
+    default @NotNull ItemStack add(@NotNull AbstractInventory inv, @NotNull ItemStack item) {
+        var rule = StackingRule.get();
+
+        synchronized (inv) {
+            for (int slot = 0; slot < size(); slot++) {
+                var get = get(inv, slot);
+                if (!get.isAir() && rule.canBeStacked(item, get)) {
+                    var getAmount = rule.getAmount(get);
+                    var max = rule.getMaxSize(get);
+                    if (getAmount < max) {
+                        var itemAmount = rule.getAmount(item);
+                        var total = itemAmount + getAmount;
+                        if (rule.canApply(item, total)) {
+                            set(inv, slot, rule.apply(get, total));
+                            return rule.apply(item, 0);
+                        } else {
+                            set(inv, slot, rule.apply(get, max));
+                            item = rule.apply(item, total - max);
+                        }
+                    }
+                }
+            }
+
+            for (int slot = 0; slot < size(); slot++) {
+                if (get(inv, slot).isAir()) {
+                    set(inv, slot, item);
+                    return rule.apply(item, 0);
+                }
+            }
+        }
+
+        return item;
     }
 
     /**
