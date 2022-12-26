@@ -95,21 +95,21 @@ public interface InventoryView {
         /**
          * Gets the item in the inventory. Because this interface assumes that inventories only have one slot, the local
          * slot ID can be omitted.
-         * @param inventory the inventory to get the item of
+         * @param inv the inventory to get the item of
          * @return the item in the inventory
          */
-        default @NotNull ItemStack get(@NotNull AbstractInventory inventory) {
-            return get(inventory, 0);
+        default @NotNull ItemStack get(@NotNull AbstractInventory inv) {
+            return get(inv, 0);
         }
 
         /**
          * Sets the item in the inventory to the provided item. Because this interface assumes that inventories only
          * have one slot, the local slot ID can be omitted.
-         * @param inventory the inventory to set the item of
-         * @param itemStack the item that the inventory should be set to
+         * @param inv the inventory to set the item of
+         * @param item the item that the inventory should be set to
          */
-        default void set(@NotNull AbstractInventory inventory, @NotNull ItemStack itemStack) {
-            set(inventory, 0, itemStack);
+        default void set(@NotNull AbstractInventory inv, @NotNull ItemStack item) {
+            set(inv, 0, item);
         }
 
     }
@@ -180,24 +180,24 @@ public interface InventoryView {
 
     /**
      * Gets the item at location of the provided local slot ID in the provided inventory.
-     * @param inventory the inventory to get the item from
+     * @param inv the inventory to get the item from
      * @param localSlot the specific local slot to read
      * @return the item at the slot in the inventory
      */
-    default @NotNull ItemStack get(@NotNull AbstractInventory inventory, int localSlot) {
+    default @NotNull ItemStack get(@NotNull AbstractInventory inv, int localSlot) {
         // No need to verify if the slot is valid in the inventory because the inventory will handle it
-        return inventory.getItemStack(localToExternal(localSlot));
+        return inv.getItemStack(localToExternal(localSlot));
     }
 
     /**
      * Sets the item at the location of the provided local slot ID in the provided inventory to the item.
-     * @param inventory the inventory to set the item in
+     * @param inv the inventory to set the item in
      * @param localSlot the specific local slot to set
-     * @param itemStack the item to set the slot to
+     * @param item the item to set the slot to
      */
-    default void set(@NotNull AbstractInventory inventory, int localSlot, @NotNull ItemStack itemStack) {
+    default void set(@NotNull AbstractInventory inv, int localSlot, @NotNull ItemStack item) {
         // No need to verify if the slot is valid in the inventory because the inventory will handle it
-        inventory.setItemStack(localToExternal(localSlot), itemStack);
+        inv.setItemStack(localToExternal(localSlot), item);
     }
 
     /**
@@ -252,6 +252,14 @@ public interface InventoryView {
         for (int i = 0; i < size(); i++) {
             set(inv, i, filler.apply(i));
         }
+    }
+
+    /**
+     * Clears this inventory by setting each slot to air.
+     * @param inv the inventory to clear
+     */
+    default void clear(@NotNull AbstractInventory inv) {
+        fill(inv, slot -> ItemStack.AIR);
     }
 
     /**
