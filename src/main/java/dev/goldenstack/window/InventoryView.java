@@ -245,12 +245,12 @@ public interface InventoryView {
     /**
      * Fills the provided inventory with items, according to what the filler provides. Each valid local slot ID will be
      * provided to the filler exactly once.
-     * @param inventory the inventory to fill
+     * @param inv the inventory to fill
      * @param filler the function that provides items for each slot
      */
-    default void fill(@NotNull AbstractInventory inventory, @NotNull Int2ObjectFunction<@NotNull ItemStack> filler) {
+    default void fill(@NotNull AbstractInventory inv, @NotNull Int2ObjectFunction<@NotNull ItemStack> filler) {
         for (int i = 0; i < size(); i++) {
-            inventory.setItemStack(localToExternal(i), filler.apply(i));
+            set(inv, i, filler.apply(i));
         }
     }
 
@@ -258,13 +258,13 @@ public interface InventoryView {
      * Collects the items in the provided inventory into a list. This list is guaranteed to have a size of
      * {@link #size()}, and the items in the list are guaranteed to be non-null. The items in the list are collected
      * from local slot IDs.
-     * @param inventory the source of the items
+     * @param inv the source of the items
      * @return the list of items from the inventory
      */
-    default @NotNull List<@NotNull ItemStack> collect(@NotNull AbstractInventory inventory) {
+    default @NotNull List<@NotNull ItemStack> collect(@NotNull AbstractInventory inv) {
         ItemStack[] items = new ItemStack[size()];
         for (int i = 0; i < size(); i++) {
-            items[i] = get(inventory, i);
+            items[i] = get(inv, i);
         }
         return List.of(items);
     }
