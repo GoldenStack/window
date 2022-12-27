@@ -48,7 +48,7 @@ public interface Views {
     record Barrel(@NotNull InventoryView view,
                   @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
-        public static final @NotNull InventoryView STORAGE = Barrel.VIEW.fork(0, 27);
+        public static final @NotNull InventoryView STORAGE = Barrel.VIEW.forkRange(0, 27);
 
         public Barrel() {
             this(VIEW, STORAGE);
@@ -121,7 +121,7 @@ public interface Views {
                         @NotNull InventoryView.Singular ingredient,
                         @NotNull InventoryView.Singular fuel) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 5);
-        public static final @NotNull InventoryView BOTTLES = BrewingStand.VIEW.fork(0, 3);
+        public static final @NotNull InventoryView BOTTLES = BrewingStand.VIEW.forkRange(0, 3);
         public static final @NotNull InventoryView.Singular INGREDIENT = BrewingStand.VIEW.fork(3);
         public static final @NotNull InventoryView.Singular FUEL = BrewingStand.VIEW.fork(4);
 
@@ -171,7 +171,7 @@ public interface Views {
     record Chest(@NotNull InventoryView view,
                  @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
-        public static final @NotNull InventoryView STORAGE = Chest.VIEW.fork(0, 27);
+        public static final @NotNull InventoryView STORAGE = Chest.VIEW.forkRange(0, 27);
 
         public Chest() {
             this(VIEW, STORAGE);
@@ -195,7 +195,7 @@ public interface Views {
                          @NotNull InventoryView input) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 10);
         public static final @NotNull InventoryView.Singular RESULT = CraftingTable.VIEW.fork(0);
-        public static final @NotNull InventoryView INPUT = CraftingTable.VIEW.fork(1, 10);
+        public static final @NotNull InventoryView INPUT = CraftingTable.VIEW.forkRange(1, 10);
 
         public CraftingTable() {
             this(VIEW, RESULT, INPUT);
@@ -216,7 +216,7 @@ public interface Views {
     record Dispenser(@NotNull InventoryView view,
                      @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 9);
-        public static final @NotNull InventoryView STORAGE = Dispenser.VIEW.fork(0, 9);
+        public static final @NotNull InventoryView STORAGE = Dispenser.VIEW.forkRange(0, 9);
 
         public Dispenser() {
             this(VIEW, STORAGE);
@@ -237,7 +237,7 @@ public interface Views {
     record DoubleChest(@NotNull InventoryView view,
                        @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 54);
-        public static final @NotNull InventoryView STORAGE = DoubleChest.VIEW.fork(0, 54);
+        public static final @NotNull InventoryView STORAGE = DoubleChest.VIEW.forkRange(0, 54);
 
         public DoubleChest() {
             this(VIEW, STORAGE);
@@ -258,7 +258,7 @@ public interface Views {
     record Dropper(@NotNull InventoryView view,
                    @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 9);
-        public static final @NotNull InventoryView STORAGE = Dropper.VIEW.fork(0, 9);
+        public static final @NotNull InventoryView STORAGE = Dropper.VIEW.forkRange(0, 9);
 
         public Dropper() {
             this(VIEW, STORAGE);
@@ -303,7 +303,7 @@ public interface Views {
     record EnderChest(@NotNull InventoryView view,
                       @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
-        public static final @NotNull InventoryView STORAGE = EnderChest.VIEW.fork(0, 27);
+        public static final @NotNull InventoryView STORAGE = EnderChest.VIEW.forkRange(0, 27);
 
         public EnderChest() {
             this(VIEW, STORAGE);
@@ -346,14 +346,14 @@ public interface Views {
     /**
      * Provides a view into a grindstone
      * @param view a contiguous section of slots 0 to 3
-     * @param input {@link Grindstone#VIEW} slots 0 to 1
+     * @param input {@link Grindstone#VIEW} slots 0 to 2
      * @param output {@link Grindstone#VIEW} slot 2
      */
     record Grindstone(@NotNull InventoryView view,
                       @NotNull InventoryView input,
                       @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
-        public static final @NotNull InventoryView INPUT = Grindstone.VIEW.fork(0, 1);
+        public static final @NotNull InventoryView INPUT = Grindstone.VIEW.forkRange(0, 2);
         public static final @NotNull InventoryView.Singular OUTPUT = Grindstone.VIEW.fork(2);
 
         public Grindstone() {
@@ -375,7 +375,7 @@ public interface Views {
     record Hopper(@NotNull InventoryView view,
                   @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 5);
-        public static final @NotNull InventoryView STORAGE = Hopper.VIEW.fork(0, 5);
+        public static final @NotNull InventoryView STORAGE = Hopper.VIEW.forkRange(0, 5);
 
         public Hopper() {
             this(VIEW, STORAGE);
@@ -465,7 +465,7 @@ public interface Views {
         public record Input(@NotNull InventoryView view,
                             @NotNull InventoryView.Singular left,
                             @NotNull InventoryView.Singular right) implements InventoryViewImpl.ExtendableRedirect {
-            public static final @NotNull InventoryView VIEW = Merchant.VIEW.fork(0, 2);
+            public static final @NotNull InventoryView VIEW = Merchant.VIEW.forkRange(0, 2);
             public static final @NotNull InventoryView.Singular LEFT = Input.VIEW.fork(0);
             public static final @NotNull InventoryView.Singular RIGHT = Input.VIEW.fork(1);
 
@@ -513,9 +513,9 @@ public interface Views {
         public record Contents(@NotNull InventoryView view,
                                @NotNull InventoryView hotbar,
                                @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
-            public static final @NotNull InventoryView VIEW = Player.VIEW.fork(0, 36);
-            public static final @NotNull InventoryView HOTBAR = Contents.VIEW.fork(0, 9);
-            public static final @NotNull InventoryView STORAGE = Contents.VIEW.fork(9, 36);
+            public static final @NotNull InventoryView VIEW = Player.VIEW.forkRange(0, 36);
+            public static final @NotNull InventoryView HOTBAR = Contents.VIEW.forkRange(0, 9);
+            public static final @NotNull InventoryView STORAGE = Contents.VIEW.forkRange(9, 36);
 
             public Contents() {
                 this(VIEW, HOTBAR, STORAGE);
@@ -531,9 +531,9 @@ public interface Views {
         public record Crafting(@NotNull InventoryView view,
                                @NotNull InventoryView.Singular output,
                                @NotNull InventoryView input) implements InventoryViewImpl.ExtendableRedirect {
-            public static final @NotNull InventoryView VIEW = Player.VIEW.fork(36, 41);
+            public static final @NotNull InventoryView VIEW = Player.VIEW.forkRange(36, 41);
             public static final @NotNull InventoryView.Singular OUTPUT = Crafting.VIEW.fork(0);
-            public static final @NotNull InventoryView INPUT = Crafting.VIEW.fork(1, 5);
+            public static final @NotNull InventoryView INPUT = Crafting.VIEW.forkRange(1, 5);
 
             public Crafting() {
                 this(VIEW, OUTPUT, INPUT);
@@ -553,7 +553,7 @@ public interface Views {
                             @NotNull InventoryView.Singular chestplate,
                             @NotNull InventoryView.Singular leggings,
                             @NotNull InventoryView.Singular boots) implements InventoryViewImpl.ExtendableRedirect {
-            public static final @NotNull InventoryView VIEW = Player.VIEW.fork(41, 45);
+            public static final @NotNull InventoryView VIEW = Player.VIEW.forkRange(41, 45);
             public static final @NotNull InventoryView.Singular HELMET = Armor.VIEW.fork(0);
             public static final @NotNull InventoryView.Singular CHESTPLATE = Armor.VIEW.fork(1);
             public static final @NotNull InventoryView.Singular LEGGINGS = Armor.VIEW.fork(2);
@@ -579,7 +579,7 @@ public interface Views {
     record ShulkerBox(@NotNull InventoryView view,
                       @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
-        public static final @NotNull InventoryView STORAGE = ShulkerBox.VIEW.fork(0, 27);
+        public static final @NotNull InventoryView STORAGE = ShulkerBox.VIEW.forkRange(0, 27);
 
         public ShulkerBox() {
             this(VIEW, STORAGE);

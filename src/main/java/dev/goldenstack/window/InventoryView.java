@@ -153,7 +153,7 @@ public interface InventoryView {
      * @param localMax the maximum local slot value
      * @return an inventory view providing a window into the provided range of this inventory
      */
-    default @NotNull InventoryView fork(int localMin, int localMax) {
+    default @NotNull InventoryView forkRange(int localMin, int localMax) {
         return join(this, contiguous(localMin, localMax));
     }
 
