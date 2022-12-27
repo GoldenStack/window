@@ -130,7 +130,7 @@ public class InventoryViewLogicTest {
     public void testChildForking() {
         var view = InventoryView.contiguous(10, 20);
 
-        var contiguous = view.fork(3, 7);
+        var contiguous = view.forkRange(3, 7);
         assertSize(contiguous, 4);
         assertSlotRange(contiguous, 0, 13, 4);
 

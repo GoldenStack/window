@@ -107,7 +107,7 @@ Various types of forking and joining views:
 var view1 = InventoryView.contiguous(4, 22);
 
 // Create a child of the contiguous section
-var view2 = view1.fork(3, 11); // Maps to the slots in `view1`
+var view2 = view1.forkRange(3, 11); // Maps to the slots in `view1`
 
 // Create a child of the view with only one slot
 var view3 = view2.fork(2); // Maps to the third slot in view2
