@@ -32,3 +32,15 @@ dependencies {
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
+
+configure<JavaPluginExtension> {
+    withSourcesJar()
+}
+
+configure<PublishingExtension> {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+}
