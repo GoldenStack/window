@@ -1,7 +1,6 @@
 package dev.goldenstack.window;
 
-import it.unimi.dsi.fastutil.ints.IntImmutableList;
-import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -33,6 +32,19 @@ class InventoryViewImpl {
                 return -1;
             }
             return localSlot + min;
+        }
+
+        @Override
+        public int externalToLocal(int externalSlot) {
+            if (!isValidExternal(externalSlot)) {
+                return -1;
+            }
+            return externalSlot - min;
+        }
+
+        @Override
+        public boolean isValidExternal(int externalSlot) {
+            return externalSlot >= min && externalSlot < max;
         }
     }
 
@@ -69,6 +81,23 @@ class InventoryViewImpl {
         @Override
         public boolean isValidLocal(int localSlot) {
             return child.isValidLocal(localSlot) && parent.isValidLocal(child.localToExternal(localSlot));
+        }
+
+        @Override
+        public int externalToLocal(int externalSlot) {
+            if (!parent.isValidExternal(externalSlot)) {
+                return -1;
+            }
+            int childExternal = parent.externalToLocal(externalSlot);
+            if (!child.isValidExternal(childExternal)) {
+                return -1;
+            }
+            return child.externalToLocal(childExternal);
+        }
+
+        @Override
+        public boolean isValidExternal(int externalSlot) {
+            return parent.isValidExternal(externalSlot) && child.isValidExternal(parent.externalToLocal(externalSlot));
         }
     }
 
@@ -108,13 +137,50 @@ class InventoryViewImpl {
             // must be true, but we already verified that it's false at the start.
             return -1;
         }
+
+        @Override
+        public int externalToLocal(int externalSlot) {
+            int offset = 0;
+            for (var view : views) {
+                if (view.isValidExternal(externalSlot)) {
+                    return offset + view.externalToLocal(externalSlot);
+                }
+                offset += view.size();
+            }
+            return -1;
+        }
+
+        @Override
+        public boolean isValidExternal(int externalSlot) {
+            for (var view : views) {
+                if (view.isValidExternal(externalSlot)) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
-    record Arbitrary(@NotNull IntList slots) implements InventoryView.Singular {
+    record Arbitrary(@NotNull IntList localToExternal, @NotNull Int2IntMap externalToLocal) implements InventoryView.Singular {
+
+        Arbitrary(@NotNull IntList localToExternal) {
+            this(localToExternal, reverse(localToExternal));
+        }
+
+        private static @NotNull Int2IntMap reverse(@NotNull IntList localToExternal) {
+            var map = new Int2IntOpenHashMap(localToExternal.size());
+            for (int i = 0; i < localToExternal.size(); i++) {
+                map.put(localToExternal.getInt(i), i);
+            }
+            return map;
+        }
 
         Arbitrary {
-            slots = new IntImmutableList(slots);
-            for (var slot : slots) {
+            // Yes, this doesn't guarantee immutability, but it's close enough as we can control API usages anyway.
+            externalToLocal = Int2IntMaps.unmodifiable(externalToLocal);
+
+            localToExternal = new IntImmutableList(localToExternal);
+            for (var slot : localToExternal) {
                 if (slot < 0) {
                     throw new IllegalArgumentException("Slot IDs cannot be negatively signed!");
                 }
@@ -123,7 +189,7 @@ class InventoryViewImpl {
 
         @Override
         public int size() {
-            return slots.size();
+            return localToExternal.size();
         }
 
         @Override
@@ -131,7 +197,20 @@ class InventoryViewImpl {
             if (!isValidLocal(localSlot)) {
                 return -1;
             }
-            return slots.getInt(localSlot);
+            return localToExternal.getInt(localSlot);
+        }
+
+        @Override
+        public int externalToLocal(int externalSlot) {
+            if (!isValidExternal(externalSlot)) {
+                return -1;
+            }
+            return externalToLocal.get(externalSlot);
+        }
+
+        @Override
+        public boolean isValidExternal(int externalSlot) {
+            return externalToLocal.containsKey(externalSlot);
         }
     }
 
@@ -147,6 +226,16 @@ class InventoryViewImpl {
         @Override
         default int localToExternal(int localSlot) {
             return view().localToExternal(localSlot);
+        }
+
+        @Override
+        default int externalToLocal(int externalSlot) {
+            return view().externalToLocal(externalSlot);
+        }
+
+        @Override
+        default boolean isValidExternal(int externalSlot) {
+            return view().isValidExternal(externalSlot);
         }
     }
 

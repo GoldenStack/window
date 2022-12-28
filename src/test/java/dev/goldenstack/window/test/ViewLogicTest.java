@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InventoryViewLogicTest {
+public class ViewLogicTest {
 
     @Test
     public void testContiguousConversion() {
@@ -59,15 +59,28 @@ public class InventoryViewLogicTest {
         var union2 = InventoryView.union(
                 InventoryView.contiguous(15000, 15010),
                 InventoryView.contiguous(40, 50),
-                InventoryView.contiguous(40, 50)
+                InventoryView.contiguous(60, 70)
         );
         assertSize(union2, 30);
         assertSlotRange(union2, 0, 15000, 10);
         assertSlotRange(union2, 10, 40, 10);
-        assertSlotRange(union2, 20, 40, 10);
+        assertSlotRange(union2, 20, 60, 10);
 
         var union3 = InventoryView.union();
         assertSize(union3, 0);
+    }
+
+    @Test
+    public void testOverlappingChildBounds() {
+        var union1 = InventoryView.union(
+                InventoryView.contiguous(10, 20),
+                InventoryView.contiguous(10, 20)
+        );
+
+        assertSize(union1, 20);
+
+        // Should only consider the first of the two children because they have overlapping slots
+        assertSlotRange(union1, 0, 10, 10);
     }
 
     @Test
@@ -144,25 +157,35 @@ public class InventoryViewLogicTest {
 
     private static void assertSize(@NotNull InventoryView view, int size) {
         assertEquals(size, view.size());
-        assertFailures(view, -1, size);
+        assertLocalFailures(view, -1, size);
     }
 
     private static void assertSlotRange(@NotNull InventoryView view, int localStart, int externalStart, int size) {
         for (int i = 0; i < size; i++) {
             assertTrue(view.isValidLocal(localStart + i));
+            assertTrue(view.isValidExternal(externalStart + i));
+
             assertEquals(externalStart + i, view.localToExternal(localStart + i));
+            assertEquals(localStart + i, view.externalToLocal(externalStart + i));
         }
     }
 
     private static void assertSlots(@NotNull InventoryView view, @NotNull IntList localValues, @NotNull IntList externalValues) {
         for (int i = 0; i < localValues.size(); i++) {
             var local = localValues.getInt(i);
+            var external = externalValues.getInt(i);
+
+            // Local
             assertTrue(view.isValidLocal(local));
-            assertEquals(externalValues.getInt(i), view.localToExternal(local));
+            assertEquals(external, view.localToExternal(local));
+
+            // External
+            assertTrue(view.isValidExternal(external));
+            assertEquals(local, view.externalToLocal(external));
         }
     }
 
-    private static void assertFailures(@NotNull InventoryView view, int @NotNull ... localFailures) {
+    private static void assertLocalFailures(@NotNull InventoryView view, int @NotNull ... localFailures) {
         for (var failure : localFailures) {
             assertFalse(view.isValidLocal(failure));
             assertEquals(-1, view.localToExternal(failure));

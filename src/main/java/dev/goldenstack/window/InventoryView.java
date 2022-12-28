@@ -44,7 +44,9 @@ public interface InventoryView {
      * adds the local IDs of the provided views together into one solid block.<br>
      * For example, consider two views that each have local slot IDs 0 through 3. A union of the two would have local
      * slots 0 through 7, with 0-3 being mapped to the first view's slots 0-3 and with local slots 4-7 being mapped to
-     * the second view's slots 0-3.
+     * the second view's slots 0-3.<br>
+     * <b>Importantly, creating a union of multiple views that have overlapping slots will result in the first valid view
+     * for each slot being used.</b>
      * @param views the views to add together
      * @return the unionized view
      */
@@ -124,7 +126,7 @@ public interface InventoryView {
     int size();
 
     /**
-     * Converts the local slot ID, which is between (inclusive) 0 and (exclusive) {@link #size()}, to a valid "external"
+     * Converts the local slot ID, which is between 0 (inclusive) and {@link #size()} (exclusive), to a valid "external"
      * slot ID. Importantly, this resultant "external" ID may be converted further, so, when considering a tree-based
      * example, it should only convert it to an ID that would be valid to its parent.<br>
      * If the provided slot ID is invalid, behaviour is undefined, but -1 should generally be returned.<br>
@@ -144,6 +146,27 @@ public interface InventoryView {
     default boolean isValidLocal(int localSlot) {
         return localSlot >= 0 && localSlot < size();
     }
+
+    /**
+     * Converts the external slot ID to a valid local slot ID. The resulting local ID will be between 0 (inclusive) and
+     * {@link #size()} (exclusive). Importantly, this local slot ID may be converted further, so, when considering a
+     * tree-based example, it should only convert it to an ID that would be valid to its child.<br>
+     * If the provided slot ID is invalid, behaviour is undefined, but -1 should generally be returned.<br>
+     * This value should, when possible, be constant for each external slot ID.
+     * @param externalSlot the external slot ID to convert
+     * @return the local slot ID
+     */
+    int externalToLocal(int externalSlot);
+
+    /**
+     * Returns whether or not the provided external slot ID is valid in this view. Generally,
+     * {@link #externalToLocal(int)} should return an invalid ID (e.g. -1) if and only if this methods returns false.
+     * <br>
+     * This value should, when possible, be constant for each external slot ID.
+     * @param externalSlot the external slot ID to verify
+     * @return true if the id is valid, and false if not
+     */
+    boolean isValidExternal(int externalSlot);
 
     /**
      * Creates a new view that provides a window into a contiguous section of this inventory, following the same
