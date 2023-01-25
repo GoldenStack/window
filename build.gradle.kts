@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.Minestom:Minestom:eb06ba8664")
+    implementation("com.github.Minestom:Minestom:51ef4779c9")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
