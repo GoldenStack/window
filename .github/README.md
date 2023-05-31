@@ -4,7 +4,18 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=for-the-badge)](https://github.com/RichardLitt/standard-readme)
 [![javadocs](https://img.shields.io/badge/documentation-javadocs-4d7a97?style=for-the-badge)](https://javadoc.jitpack.io/com/github/GoldenStack/window/master-SNAPSHOT/javadoc/)
 
-Useful API for Minestom inventories 
+Useful API for Minestom inventories
+
+When programming, Minecraft inventories are interfaced with using slot IDs. However, these IDs are completely arbitrary,
+and don't hold much meaning; this leads to a lot of confusion when dealing with complicated inventories, like brewing
+stands and player inventories. However, simple inventories and their subsections can still be meaningfully represented
+as just slots IDs, like chest inventories, as they aren't complicated at all.
+
+This library allows the user to represent each inventory as a tree of separate inventories, each with their own isolated
+slot IDs, making it much easier to manage: for example, if an operation is applied to a subsection of an inventory, it
+will only be applied to that subsection.
+
+--- 
 
 Essentially, this library manages a tree of inventory views, each knowing nothing about its position in the tree except
 for a singular parent.
