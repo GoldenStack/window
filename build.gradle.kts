@@ -23,11 +23,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.github.Minestom.Minestom:Minestom:9b15acf4fa")
+    compileOnly("dev.hollowcube:minestom-ce:78cb62fa72")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    testImplementation("com.github.Minestom.Minestom:Minestom:9b15acf4fa")
+    testImplementation("dev.hollowcube:minestom-ce:78cb62fa72")
 }
 
 tasks.getByName<Test>("test") {

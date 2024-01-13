@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Stores commonly-used views of Minecraft inventories.
  */
+@SuppressWarnings("unused")
 public interface Views {
 
     @NotNull Anvil ANVIL = new Anvil();
@@ -187,18 +188,18 @@ public interface Views {
     /**
      * Provides a view into a crafting table
      * @param view a contiguous section of slots 0 to 10
-     * @param result {@link CraftingTable#VIEW} slot 0
+     * @param output {@link CraftingTable#VIEW} slot 0
      * @param input {@link CraftingTable#VIEW} slots 1 to 10
      */
     record CraftingTable(@NotNull InventoryView view,
-                         @NotNull InventoryView.Singular result,
+                         @NotNull InventoryView.Singular output,
                          @NotNull InventoryView input) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 10);
-        public static final @NotNull InventoryView.Singular RESULT = CraftingTable.VIEW.fork(0);
+        public static final @NotNull InventoryView.Singular OUTPUT = CraftingTable.VIEW.fork(0);
         public static final @NotNull InventoryView INPUT = CraftingTable.VIEW.forkRange(1, 10);
 
         public CraftingTable() {
-            this(VIEW, RESULT, INPUT);
+            this(VIEW, OUTPUT, INPUT);
         }
     }
 
@@ -415,21 +416,21 @@ public interface Views {
      * @param banner {@link Loom#VIEW} slot 0
      * @param color {@link Loom#VIEW} slot 1
      * @param pattern {@link Loom#VIEW} slot 2
-     * @param result {@link Loom#VIEW} slot 3
+     * @param output {@link Loom#VIEW} slot 3
      */
     record Loom(@NotNull InventoryView view,
                 @NotNull InventoryView.Singular banner,
                 @NotNull InventoryView.Singular color,
                 @NotNull InventoryView.Singular pattern,
-                @NotNull InventoryView.Singular result) implements InventoryViewImpl.ExtendableRedirect {
+                @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 4);
         public static final @NotNull InventoryView.Singular BANNER = Loom.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular COLOR = Loom.VIEW.fork(1);
         public static final @NotNull InventoryView.Singular PATTERN = Loom.VIEW.fork(2);
-        public static final @NotNull InventoryView.Singular RESULT = Loom.VIEW.fork(3);
+        public static final @NotNull InventoryView.Singular OUTPUT = Loom.VIEW.fork(3);
 
         public Loom() {
-            this(VIEW, BANNER, COLOR, PATTERN, RESULT);
+            this(VIEW, BANNER, COLOR, PATTERN, OUTPUT);
         }
     }
 
