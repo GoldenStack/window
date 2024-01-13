@@ -10,6 +10,12 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("unused")
 public interface Views extends dev.goldenstack.window.v1_19.Views {
 
+    @NotNull Smithing SMITHING = new Smithing();
+
+    static @NotNull Smithing smithing() {
+        return Views.SMITHING;
+    }
+    
     /**
      * Provides a view into a smithing table
      * @param view a contiguous section of slots 0 to 3
