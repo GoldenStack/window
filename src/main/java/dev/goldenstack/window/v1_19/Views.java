@@ -1,9 +1,11 @@
-package dev.goldenstack.window;
+package dev.goldenstack.window.v1_19;
 
+import dev.goldenstack.window.InventoryView;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Stores commonly-used views of Minecraft inventories.
+ * This is for version 1.19.
  */
 @SuppressWarnings("unused")
 public interface Views {
