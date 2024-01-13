@@ -24,7 +24,7 @@ public interface Views {
     record Anvil(@NotNull InventoryView view,
                  @NotNull InventoryView.Singular input,
                  @NotNull InventoryView.Singular modifier,
-                 @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                 @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView.Singular INPUT = Anvil.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular MODIFIER = Anvil.VIEW.fork(1);
@@ -47,7 +47,7 @@ public interface Views {
      * @param storage {@link Barrel#VIEW} slots 0 to 27
      */
     record Barrel(@NotNull InventoryView view,
-                  @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                  @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
         public static final @NotNull InventoryView STORAGE = Barrel.VIEW.forkRange(0, 27);
 
@@ -68,7 +68,7 @@ public interface Views {
      * @param sacrifice {@link Beacon#VIEW} slot 0
      */
     record Beacon(@NotNull InventoryView view,
-                  @NotNull InventoryView.Singular sacrifice) implements InventoryViewImpl.ExtendableRedirect {
+                  @NotNull InventoryView.Singular sacrifice) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.singular(0);
         public static final @NotNull InventoryView.Singular SACRIFICE = Beacon.VIEW.fork(0);
 
@@ -93,7 +93,7 @@ public interface Views {
     record BlastFurnace(@NotNull InventoryView view,
                         @NotNull InventoryView.Singular input,
                         @NotNull InventoryView.Singular fuel,
-                        @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                        @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView.Singular INPUT = BlastFurnace.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular FUEL = BlastFurnace.VIEW.fork(1);
@@ -120,7 +120,7 @@ public interface Views {
     record BrewingStand(@NotNull InventoryView view,
                         @NotNull InventoryView bottles,
                         @NotNull InventoryView.Singular ingredient,
-                        @NotNull InventoryView.Singular fuel) implements InventoryViewImpl.ExtendableRedirect {
+                        @NotNull InventoryView.Singular fuel) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 5);
         public static final @NotNull InventoryView BOTTLES = BrewingStand.VIEW.forkRange(0, 3);
         public static final @NotNull InventoryView.Singular INGREDIENT = BrewingStand.VIEW.fork(3);
@@ -147,7 +147,7 @@ public interface Views {
     record CartographyTable(@NotNull InventoryView view,
                             @NotNull InventoryView.Singular input,
                             @NotNull InventoryView.Singular modifier,
-                            @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                            @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView.Singular INPUT = CartographyTable.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular MODIFIER = CartographyTable.VIEW.fork(1);
@@ -170,7 +170,7 @@ public interface Views {
      * @param storage {@link Chest#VIEW} slots 0 to 27
      */
     record Chest(@NotNull InventoryView view,
-                 @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                 @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
         public static final @NotNull InventoryView STORAGE = Chest.VIEW.forkRange(0, 27);
 
@@ -193,7 +193,7 @@ public interface Views {
      */
     record CraftingTable(@NotNull InventoryView view,
                          @NotNull InventoryView.Singular output,
-                         @NotNull InventoryView input) implements InventoryViewImpl.ExtendableRedirect {
+                         @NotNull InventoryView input) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 10);
         public static final @NotNull InventoryView.Singular OUTPUT = CraftingTable.VIEW.fork(0);
         public static final @NotNull InventoryView INPUT = CraftingTable.VIEW.forkRange(1, 10);
@@ -215,7 +215,7 @@ public interface Views {
      * @param storage {@link Dispenser#VIEW} slots 0 to 9
      */
     record Dispenser(@NotNull InventoryView view,
-                     @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                     @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 9);
         public static final @NotNull InventoryView STORAGE = Dispenser.VIEW.forkRange(0, 9);
 
@@ -236,7 +236,7 @@ public interface Views {
      * @param storage {@link DoubleChest#VIEW} slots 0 to 54
      */
     record DoubleChest(@NotNull InventoryView view,
-                       @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                       @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 54);
         public static final @NotNull InventoryView STORAGE = DoubleChest.VIEW.forkRange(0, 54);
 
@@ -257,7 +257,7 @@ public interface Views {
      * @param storage {@link Dropper#VIEW} slots 0 to 9
      */
     record Dropper(@NotNull InventoryView view,
-                   @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                   @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 9);
         public static final @NotNull InventoryView STORAGE = Dropper.VIEW.forkRange(0, 9);
 
@@ -280,7 +280,7 @@ public interface Views {
      */
     record EnchantingTable(@NotNull InventoryView view,
                            @NotNull InventoryView.Singular item,
-                           @NotNull InventoryView.Singular fuel) implements InventoryViewImpl.ExtendableRedirect {
+                           @NotNull InventoryView.Singular fuel) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 2);
         public static final @NotNull InventoryView.Singular ITEM = EnchantingTable.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular FUEL = EnchantingTable.VIEW.fork(1);
@@ -302,7 +302,7 @@ public interface Views {
      * @param storage {@link EnderChest#VIEW} slots 0 to 27
      */
     record EnderChest(@NotNull InventoryView view,
-                      @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                      @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
         public static final @NotNull InventoryView STORAGE = EnderChest.VIEW.forkRange(0, 27);
 
@@ -327,7 +327,7 @@ public interface Views {
     record Furnace(@NotNull InventoryView view,
                    @NotNull InventoryView.Singular input,
                    @NotNull InventoryView.Singular fuel,
-                   @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                   @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView.Singular INPUT = Furnace.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular FUEL = Furnace.VIEW.fork(1);
@@ -352,7 +352,7 @@ public interface Views {
      */
     record Grindstone(@NotNull InventoryView view,
                       @NotNull InventoryView input,
-                      @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                      @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView INPUT = Grindstone.VIEW.forkRange(0, 2);
         public static final @NotNull InventoryView.Singular OUTPUT = Grindstone.VIEW.fork(2);
@@ -374,7 +374,7 @@ public interface Views {
      * @param storage {@link Hopper#VIEW} slots 0 to 5
      */
     record Hopper(@NotNull InventoryView view,
-                  @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                  @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 5);
         public static final @NotNull InventoryView STORAGE = Hopper.VIEW.forkRange(0, 5);
 
@@ -395,7 +395,7 @@ public interface Views {
      * @param book {@link Lectern#VIEW} slot 0
      */
     record Lectern(@NotNull InventoryView view,
-                   @NotNull InventoryView.Singular book) implements InventoryViewImpl.ExtendableRedirect {
+                   @NotNull InventoryView.Singular book) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.singular(0);
         public static final @NotNull InventoryView.Singular BOOK = Lectern.VIEW.fork(0);
 
@@ -422,7 +422,7 @@ public interface Views {
                 @NotNull InventoryView.Singular banner,
                 @NotNull InventoryView.Singular color,
                 @NotNull InventoryView.Singular pattern,
-                @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 4);
         public static final @NotNull InventoryView.Singular BANNER = Loom.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular COLOR = Loom.VIEW.fork(1);
@@ -448,7 +448,7 @@ public interface Views {
      */
     record Merchant(@NotNull InventoryView view,
                     @NotNull Input input,
-                    @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                    @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull Input INPUT = new Input();
         public static final @NotNull InventoryView.Singular OUTPUT = Merchant.VIEW.fork(2);
@@ -465,7 +465,7 @@ public interface Views {
          */
         public record Input(@NotNull InventoryView view,
                             @NotNull InventoryView.Singular left,
-                            @NotNull InventoryView.Singular right) implements InventoryViewImpl.ExtendableRedirect {
+                            @NotNull InventoryView.Singular right) implements DelegateView {
             public static final @NotNull InventoryView VIEW = Merchant.VIEW.forkRange(0, 2);
             public static final @NotNull InventoryView.Singular LEFT = Input.VIEW.fork(0);
             public static final @NotNull InventoryView.Singular RIGHT = Input.VIEW.fork(1);
@@ -494,7 +494,7 @@ public interface Views {
                   @NotNull Contents contents,
                   @NotNull Crafting crafting,
                   @NotNull Armor armor,
-                  @NotNull InventoryView.Singular offhand) implements InventoryViewImpl.ExtendableRedirect {
+                  @NotNull InventoryView.Singular offhand) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 46);
         public static final @NotNull Contents CONTENTS = new Contents();
         public static final @NotNull Crafting CRAFTING = new Crafting();
@@ -513,7 +513,7 @@ public interface Views {
          */
         public record Contents(@NotNull InventoryView view,
                                @NotNull InventoryView hotbar,
-                               @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                               @NotNull InventoryView storage) implements DelegateView {
             public static final @NotNull InventoryView VIEW = Player.VIEW.forkRange(0, 36);
             public static final @NotNull InventoryView HOTBAR = Contents.VIEW.forkRange(0, 9);
             public static final @NotNull InventoryView STORAGE = Contents.VIEW.forkRange(9, 36);
@@ -531,7 +531,7 @@ public interface Views {
          */
         public record Crafting(@NotNull InventoryView view,
                                @NotNull InventoryView.Singular output,
-                               @NotNull InventoryView input) implements InventoryViewImpl.ExtendableRedirect {
+                               @NotNull InventoryView input) implements DelegateView {
             public static final @NotNull InventoryView VIEW = Player.VIEW.forkRange(36, 41);
             public static final @NotNull InventoryView.Singular OUTPUT = Crafting.VIEW.fork(0);
             public static final @NotNull InventoryView INPUT = Crafting.VIEW.forkRange(1, 5);
@@ -553,7 +553,7 @@ public interface Views {
                             @NotNull InventoryView.Singular helmet,
                             @NotNull InventoryView.Singular chestplate,
                             @NotNull InventoryView.Singular leggings,
-                            @NotNull InventoryView.Singular boots) implements InventoryViewImpl.ExtendableRedirect {
+                            @NotNull InventoryView.Singular boots) implements DelegateView {
             public static final @NotNull InventoryView VIEW = Player.VIEW.forkRange(41, 45);
             public static final @NotNull InventoryView.Singular HELMET = Armor.VIEW.fork(0);
             public static final @NotNull InventoryView.Singular CHESTPLATE = Armor.VIEW.fork(1);
@@ -578,7 +578,7 @@ public interface Views {
      * @param storage {@link ShulkerBox#VIEW} slots 0 to 27
      */
     record ShulkerBox(@NotNull InventoryView view,
-                      @NotNull InventoryView storage) implements InventoryViewImpl.ExtendableRedirect {
+                      @NotNull InventoryView storage) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 27);
         public static final @NotNull InventoryView STORAGE = ShulkerBox.VIEW.forkRange(0, 27);
 
@@ -603,7 +603,7 @@ public interface Views {
     record Smithing(@NotNull InventoryView view,
                     @NotNull InventoryView.Singular input,
                     @NotNull InventoryView.Singular modifier,
-                    @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                    @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView.Singular INPUT = Smithing.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular MODIFIER = Smithing.VIEW.fork(1);
@@ -630,7 +630,7 @@ public interface Views {
     record Smoker(@NotNull InventoryView view,
                   @NotNull InventoryView.Singular input,
                   @NotNull InventoryView.Singular fuel,
-                  @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                  @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
         public static final @NotNull InventoryView.Singular INPUT = Smoker.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular FUEL = Smoker.VIEW.fork(1);
@@ -655,13 +655,40 @@ public interface Views {
      */
     record Stonecutter(@NotNull InventoryView view,
                        @NotNull InventoryView.Singular input,
-                       @NotNull InventoryView.Singular output) implements InventoryViewImpl.ExtendableRedirect {
+                       @NotNull InventoryView.Singular output) implements DelegateView {
         public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 2);
         public static final @NotNull InventoryView.Singular INPUT = Stonecutter.VIEW.fork(0);
         public static final @NotNull InventoryView.Singular OUTPUT = Stonecutter.VIEW.fork(1);
 
         public Stonecutter() {
             this(VIEW, INPUT, OUTPUT);
+        }
+    }
+
+    /**
+     * View delegate class that makes implementation code shorter.
+     */
+    interface DelegateView extends InventoryView {
+        @NotNull InventoryView view();
+
+        @Override
+        default int size() {
+            return view().size();
+        }
+
+        @Override
+        default int localToExternal(int localSlot) {
+            return view().localToExternal(localSlot);
+        }
+
+        @Override
+        default int externalToLocal(int externalSlot) {
+            return view().externalToLocal(externalSlot);
+        }
+
+        @Override
+        default boolean isValidExternal(int externalSlot) {
+            return view().isValidExternal(externalSlot);
         }
     }
 
