@@ -10,6 +10,90 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("unused")
 public interface Views extends dev.goldenstack.window.v1_19.Views {
 
+    static @NotNull Anvil anvil() {
+        return Views.ANVIL;
+    }
+
+    static @NotNull Barrel barrel() {
+        return Views.BARREL;
+    }
+
+    static @NotNull Beacon beacon() {
+        return Views.BEACON;
+    }
+
+    static @NotNull BlastFurnace blastFurnace() {
+        return Views.BLAST_FURNACE;
+    }
+
+    static @NotNull BrewingStand brewingStand() {
+        return Views.BREWING_STAND;
+    }
+
+    static @NotNull CartographyTable cartographyTable() {
+        return Views.CARTOGRAPHY_TABLE;
+    }
+
+    static @NotNull Chest chest() {
+        return Views.CHEST;
+    }
+
+    static @NotNull CraftingTable craftingTable() {
+        return Views.CRAFTING_TABLE;
+    }
+
+    static @NotNull Dispenser dispenser() {
+        return Views.DISPENSER;
+    }
+
+    static @NotNull DoubleChest doubleChest() {
+        return Views.DOUBLE_CHEST;
+    }
+
+    static @NotNull Dropper dropper() {
+        return Views.DROPPER;
+    }
+
+    static @NotNull EnchantingTable enchantingTable() {
+        return Views.ENCHANTING_TABLE;
+    }
+
+    static @NotNull EnderChest enderChest() {
+        return Views.ENDER_CHEST;
+    }
+
+    static @NotNull Furnace furnace() {
+        return Views.FURNACE;
+    }
+
+    static @NotNull Grindstone grindstone() {
+        return Views.GRINDSTONE;
+    }
+
+    static @NotNull Hopper hopper() {
+        return Views.HOPPER;
+    }
+
+    static @NotNull Lectern lectern() {
+        return Views.LECTERN;
+    }
+
+    static @NotNull Loom loom() {
+        return Views.LOOM;
+    }
+
+    static @NotNull Merchant merchant() {
+        return Views.MERCHANT;
+    }
+
+    static @NotNull Player player() {
+        return Views.PLAYER;
+    }
+
+    static @NotNull ShulkerBox shulkerBox() {
+        return Views.SHULKER_BOX;
+    }
+
     @NotNull Smithing SMITHING = new Smithing();
 
     static @NotNull Smithing smithing() {
@@ -38,6 +122,14 @@ public interface Views extends dev.goldenstack.window.v1_19.Views {
         public Smithing() {
             this(VIEW, TEMPLATE, BASE, ADDITION, OUTPUT);
         }
+    }
+
+    static @NotNull Smoker smoker() {
+        return Views.SMOKER;
+    }
+
+    static @NotNull Stonecutter stonecutter() {
+        return Views.STONECUTTER;
     }
 
 }
