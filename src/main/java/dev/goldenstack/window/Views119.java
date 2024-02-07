@@ -1,6 +1,5 @@
-package dev.goldenstack.window.v1_19;
+package dev.goldenstack.window;
 
-import dev.goldenstack.window.InventoryView;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -8,12 +7,12 @@ import org.jetbrains.annotations.NotNull;
  * This is for version 1.19.
  */
 @SuppressWarnings("unused")
-public interface Views {
+public interface Views119 {
 
     @NotNull Anvil ANVIL = new Anvil();
 
     static @NotNull Anvil anvil() {
-        return Views.ANVIL;
+        return Views119.ANVIL;
     }
 
     /**
@@ -40,7 +39,7 @@ public interface Views {
     @NotNull Barrel BARREL = new Barrel();
 
     static @NotNull Barrel barrel() {
-        return Views.BARREL;
+        return Views119.BARREL;
     }
 
     /**
@@ -61,7 +60,7 @@ public interface Views {
     @NotNull Beacon BEACON = new Beacon();
 
     static @NotNull Beacon beacon() {
-        return Views.BEACON;
+        return Views119.BEACON;
     }
 
     /**
@@ -82,7 +81,7 @@ public interface Views {
     @NotNull BlastFurnace BLAST_FURNACE = new BlastFurnace();
 
     static @NotNull BlastFurnace blastFurnace() {
-        return Views.BLAST_FURNACE;
+        return Views119.BLAST_FURNACE;
     }
 
     /**
@@ -109,7 +108,7 @@ public interface Views {
     @NotNull BrewingStand BREWING_STAND = new BrewingStand();
 
     static @NotNull BrewingStand brewingStand() {
-        return Views.BREWING_STAND;
+        return Views119.BREWING_STAND;
     }
 
     /**
@@ -136,7 +135,7 @@ public interface Views {
     @NotNull CartographyTable CARTOGRAPHY_TABLE = new CartographyTable();
 
     static @NotNull CartographyTable cartographyTable() {
-        return Views.CARTOGRAPHY_TABLE;
+        return Views119.CARTOGRAPHY_TABLE;
     }
 
     /**
@@ -163,7 +162,7 @@ public interface Views {
     @NotNull Chest CHEST = new Chest();
 
     static @NotNull Chest chest() {
-        return Views.CHEST;
+        return Views119.CHEST;
     }
 
     /**
@@ -184,7 +183,7 @@ public interface Views {
     @NotNull CraftingTable CRAFTING_TABLE = new CraftingTable();
 
     static @NotNull CraftingTable craftingTable() {
-        return Views.CRAFTING_TABLE;
+        return Views119.CRAFTING_TABLE;
     }
 
     /**
@@ -208,7 +207,7 @@ public interface Views {
     @NotNull Dispenser DISPENSER = new Dispenser();
 
     static @NotNull Dispenser dispenser() {
-        return Views.DISPENSER;
+        return Views119.DISPENSER;
     }
 
     /**
@@ -229,7 +228,7 @@ public interface Views {
     @NotNull DoubleChest DOUBLE_CHEST = new DoubleChest();
 
     static @NotNull DoubleChest doubleChest() {
-        return Views.DOUBLE_CHEST;
+        return Views119.DOUBLE_CHEST;
     }
 
     /**
@@ -250,7 +249,7 @@ public interface Views {
     @NotNull Dropper DROPPER = new Dropper();
 
     static @NotNull Dropper dropper() {
-        return Views.DROPPER;
+        return Views119.DROPPER;
     }
 
     /**
@@ -271,7 +270,7 @@ public interface Views {
     @NotNull EnchantingTable ENCHANTING_TABLE = new EnchantingTable();
 
     static @NotNull EnchantingTable enchantingTable() {
-        return Views.ENCHANTING_TABLE;
+        return Views119.ENCHANTING_TABLE;
     }
 
     /**
@@ -295,7 +294,7 @@ public interface Views {
     @NotNull EnderChest ENDER_CHEST = new EnderChest();
 
     static @NotNull EnderChest enderChest() {
-        return Views.ENDER_CHEST;
+        return Views119.ENDER_CHEST;
     }
 
     /**
@@ -316,7 +315,7 @@ public interface Views {
     @NotNull Furnace FURNACE = new Furnace();
 
     static @NotNull Furnace furnace() {
-        return Views.FURNACE;
+        return Views119.FURNACE;
     }
 
     /**
@@ -343,7 +342,7 @@ public interface Views {
     @NotNull Grindstone GRINDSTONE = new Grindstone();
 
     static @NotNull Grindstone grindstone() {
-        return Views.GRINDSTONE;
+        return Views119.GRINDSTONE;
     }
 
     /**
@@ -367,7 +366,7 @@ public interface Views {
     @NotNull Hopper HOPPER = new Hopper();
 
     static @NotNull Hopper hopper() {
-        return Views.HOPPER;
+        return Views119.HOPPER;
     }
 
     /**
@@ -388,7 +387,7 @@ public interface Views {
     @NotNull Lectern LECTERN = new Lectern();
 
     static @NotNull Lectern lectern() {
-        return Views.LECTERN;
+        return Views119.LECTERN;
     }
 
     /**
@@ -409,7 +408,7 @@ public interface Views {
     @NotNull Loom LOOM = new Loom();
 
     static @NotNull Loom loom() {
-        return Views.LOOM;
+        return Views119.LOOM;
     }
 
     /**
@@ -439,7 +438,7 @@ public interface Views {
     @NotNull Merchant MERCHANT = new Merchant();
 
     static @NotNull Merchant merchant() {
-        return Views.MERCHANT;
+        return Views119.MERCHANT;
     }
 
     /**
@@ -481,7 +480,7 @@ public interface Views {
     @NotNull Player PLAYER = new Player();
 
     static @NotNull Player player() {
-        return Views.PLAYER;
+        return Views119.PLAYER;
     }
 
     /**
@@ -571,7 +570,7 @@ public interface Views {
     @NotNull ShulkerBox SHULKER_BOX = new ShulkerBox();
 
     static @NotNull ShulkerBox shulkerBox() {
-        return Views.SHULKER_BOX;
+        return Views119.SHULKER_BOX;
     }
 
     /**
@@ -592,7 +591,7 @@ public interface Views {
     @NotNull Smithing SMITHING = new Smithing();
 
     static @NotNull Smithing smithing() {
-        return Views.SMITHING;
+        return Views119.SMITHING;
     }
 
     /**
@@ -619,7 +618,7 @@ public interface Views {
     @NotNull Smoker SMOKER = new Smoker();
 
     static @NotNull Smoker smoker() {
-        return Views.SMOKER;
+        return Views119.SMOKER;
     }
 
     /**
@@ -646,7 +645,7 @@ public interface Views {
     @NotNull Stonecutter STONECUTTER = new Stonecutter();
 
     static @NotNull Stonecutter stonecutter() {
-        return Views.STONECUTTER;
+        return Views119.STONECUTTER;
     }
 
     /**
