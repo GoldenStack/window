@@ -23,11 +23,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("dev.hollowcube:minestom-ce:78cb62fa72")
+    compileOnly("net.minestom:minestom-snapshots:6d175c4ff9")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    testImplementation("dev.hollowcube:minestom-ce:78cb62fa72")
+    testImplementation("net.minestom:minestom-snapshots:6d175c4ff9")
 }
 
 tasks.getByName<Test>("test") {

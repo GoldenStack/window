@@ -3,16 +3,15 @@ package dev.goldenstack.window;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Stores commonly-used views of Minecraft inventories.
- * This is for version 1.19.
+ * Stores commonly-used views of Minecraft inventories, for version 1.20.4.
  */
 @SuppressWarnings("unused")
-public interface Views119 {
+public interface Views {
 
     @NotNull Anvil ANVIL = new Anvil();
 
     static @NotNull Anvil anvil() {
-        return Views119.ANVIL;
+        return Views.ANVIL;
     }
 
     /**
@@ -39,7 +38,7 @@ public interface Views119 {
     @NotNull Barrel BARREL = new Barrel();
 
     static @NotNull Barrel barrel() {
-        return Views119.BARREL;
+        return Views.BARREL;
     }
 
     /**
@@ -60,7 +59,7 @@ public interface Views119 {
     @NotNull Beacon BEACON = new Beacon();
 
     static @NotNull Beacon beacon() {
-        return Views119.BEACON;
+        return Views.BEACON;
     }
 
     /**
@@ -81,7 +80,7 @@ public interface Views119 {
     @NotNull BlastFurnace BLAST_FURNACE = new BlastFurnace();
 
     static @NotNull BlastFurnace blastFurnace() {
-        return Views119.BLAST_FURNACE;
+        return Views.BLAST_FURNACE;
     }
 
     /**
@@ -108,7 +107,7 @@ public interface Views119 {
     @NotNull BrewingStand BREWING_STAND = new BrewingStand();
 
     static @NotNull BrewingStand brewingStand() {
-        return Views119.BREWING_STAND;
+        return Views.BREWING_STAND;
     }
 
     /**
@@ -135,7 +134,7 @@ public interface Views119 {
     @NotNull CartographyTable CARTOGRAPHY_TABLE = new CartographyTable();
 
     static @NotNull CartographyTable cartographyTable() {
-        return Views119.CARTOGRAPHY_TABLE;
+        return Views.CARTOGRAPHY_TABLE;
     }
 
     /**
@@ -162,7 +161,7 @@ public interface Views119 {
     @NotNull Chest CHEST = new Chest();
 
     static @NotNull Chest chest() {
-        return Views119.CHEST;
+        return Views.CHEST;
     }
 
     /**
@@ -183,7 +182,7 @@ public interface Views119 {
     @NotNull CraftingTable CRAFTING_TABLE = new CraftingTable();
 
     static @NotNull CraftingTable craftingTable() {
-        return Views119.CRAFTING_TABLE;
+        return Views.CRAFTING_TABLE;
     }
 
     /**
@@ -207,7 +206,7 @@ public interface Views119 {
     @NotNull Dispenser DISPENSER = new Dispenser();
 
     static @NotNull Dispenser dispenser() {
-        return Views119.DISPENSER;
+        return Views.DISPENSER;
     }
 
     /**
@@ -228,7 +227,7 @@ public interface Views119 {
     @NotNull DoubleChest DOUBLE_CHEST = new DoubleChest();
 
     static @NotNull DoubleChest doubleChest() {
-        return Views119.DOUBLE_CHEST;
+        return Views.DOUBLE_CHEST;
     }
 
     /**
@@ -249,7 +248,7 @@ public interface Views119 {
     @NotNull Dropper DROPPER = new Dropper();
 
     static @NotNull Dropper dropper() {
-        return Views119.DROPPER;
+        return Views.DROPPER;
     }
 
     /**
@@ -270,7 +269,7 @@ public interface Views119 {
     @NotNull EnchantingTable ENCHANTING_TABLE = new EnchantingTable();
 
     static @NotNull EnchantingTable enchantingTable() {
-        return Views119.ENCHANTING_TABLE;
+        return Views.ENCHANTING_TABLE;
     }
 
     /**
@@ -294,7 +293,7 @@ public interface Views119 {
     @NotNull EnderChest ENDER_CHEST = new EnderChest();
 
     static @NotNull EnderChest enderChest() {
-        return Views119.ENDER_CHEST;
+        return Views.ENDER_CHEST;
     }
 
     /**
@@ -315,7 +314,7 @@ public interface Views119 {
     @NotNull Furnace FURNACE = new Furnace();
 
     static @NotNull Furnace furnace() {
-        return Views119.FURNACE;
+        return Views.FURNACE;
     }
 
     /**
@@ -342,7 +341,7 @@ public interface Views119 {
     @NotNull Grindstone GRINDSTONE = new Grindstone();
 
     static @NotNull Grindstone grindstone() {
-        return Views119.GRINDSTONE;
+        return Views.GRINDSTONE;
     }
 
     /**
@@ -366,7 +365,7 @@ public interface Views119 {
     @NotNull Hopper HOPPER = new Hopper();
 
     static @NotNull Hopper hopper() {
-        return Views119.HOPPER;
+        return Views.HOPPER;
     }
 
     /**
@@ -387,7 +386,7 @@ public interface Views119 {
     @NotNull Lectern LECTERN = new Lectern();
 
     static @NotNull Lectern lectern() {
-        return Views119.LECTERN;
+        return Views.LECTERN;
     }
 
     /**
@@ -408,7 +407,7 @@ public interface Views119 {
     @NotNull Loom LOOM = new Loom();
 
     static @NotNull Loom loom() {
-        return Views119.LOOM;
+        return Views.LOOM;
     }
 
     /**
@@ -438,7 +437,7 @@ public interface Views119 {
     @NotNull Merchant MERCHANT = new Merchant();
 
     static @NotNull Merchant merchant() {
-        return Views119.MERCHANT;
+        return Views.MERCHANT;
     }
 
     /**
@@ -480,7 +479,7 @@ public interface Views119 {
     @NotNull Player PLAYER = new Player();
 
     static @NotNull Player player() {
-        return Views119.PLAYER;
+        return Views.PLAYER;
     }
 
     /**
@@ -570,7 +569,7 @@ public interface Views119 {
     @NotNull ShulkerBox SHULKER_BOX = new ShulkerBox();
 
     static @NotNull ShulkerBox shulkerBox() {
-        return Views119.SHULKER_BOX;
+        return Views.SHULKER_BOX;
     }
 
     /**
@@ -591,34 +590,37 @@ public interface Views119 {
     @NotNull Smithing SMITHING = new Smithing();
 
     static @NotNull Smithing smithing() {
-        return Views119.SMITHING;
+        return Views.SMITHING;
     }
 
     /**
      * Provides a view into a smithing table
      * @param view a contiguous section of slots 0 to 3
-     * @param input {@link Smithing#VIEW} slot 0
-     * @param modifier {@link Smithing#VIEW} slot 1
-     * @param output {@link Smithing#VIEW} slot 2
+     * @param template {@link Smithing#VIEW} slot 0
+     * @param base {@link Smithing#VIEW} slot 1
+     * @param addition {@link Smithing#VIEW} slot 2
+     * @param output {@link Smithing#VIEW} slot 3
      */
     record Smithing(@NotNull InventoryView view,
-                    @NotNull InventoryView.Singular input,
-                    @NotNull InventoryView.Singular modifier,
+                    @NotNull InventoryView.Singular template,
+                    @NotNull InventoryView.Singular base,
+                    @NotNull InventoryView.Singular addition,
                     @NotNull InventoryView.Singular output) implements DelegateView {
-        public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 3);
-        public static final @NotNull InventoryView.Singular INPUT = Smithing.VIEW.fork(0);
-        public static final @NotNull InventoryView.Singular MODIFIER = Smithing.VIEW.fork(1);
-        public static final @NotNull InventoryView.Singular OUTPUT = Smithing.VIEW.fork(2);
+        public static final @NotNull InventoryView VIEW = InventoryView.contiguous(0, 4);
+        public static final @NotNull InventoryView.Singular TEMPLATE = Smithing.VIEW.fork(0);
+        public static final @NotNull InventoryView.Singular BASE = Smithing.VIEW.fork(1);
+        public static final @NotNull InventoryView.Singular ADDITION = Smithing.VIEW.fork(2);
+        public static final @NotNull InventoryView.Singular OUTPUT = Smithing.VIEW.fork(3);
 
         public Smithing() {
-            this(VIEW, INPUT, MODIFIER, OUTPUT);
+            this(VIEW, TEMPLATE, BASE, ADDITION, OUTPUT);
         }
     }
 
     @NotNull Smoker SMOKER = new Smoker();
 
     static @NotNull Smoker smoker() {
-        return Views119.SMOKER;
+        return Views.SMOKER;
     }
 
     /**
@@ -645,7 +647,7 @@ public interface Views119 {
     @NotNull Stonecutter STONECUTTER = new Stonecutter();
 
     static @NotNull Stonecutter stonecutter() {
-        return Views119.STONECUTTER;
+        return Views.STONECUTTER;
     }
 
     /**
