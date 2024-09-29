@@ -12,7 +12,7 @@ java {
     withSourcesJar()
 
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
@@ -23,11 +23,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("net.minestom:minestom-snapshots:6d175c4ff9")
+    compileOnly("net.minestom:minestom-snapshots:96bf14500a")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    testImplementation("net.minestom:minestom-snapshots:6d175c4ff9")
+    testImplementation("net.minestom:minestom-snapshots:96bf14500a")
 }
 
 tasks.getByName<Test>("test") {
