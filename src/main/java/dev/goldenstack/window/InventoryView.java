@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.IntImmutableList;
 import net.minestom.server.inventory.AbstractInventory;
 import net.minestom.server.item.ItemStack;
-import net.minestom.server.item.StackingRule;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -224,31 +223,26 @@ public interface InventoryView {
     }
 
     /**
-     * Adds the provided item to the provided inventory, reducing the count of the item when applicable, following the
-     * rules of the stacking rule ({@link StackingRule#get()}).
+     * Adds the provided item to the provided inventory, reducing the count of the item when applicable.
      * @param inv the inventory to add items to
      * @param item the item to add to the inventory
      * @return the remaining item after adding
      */
     @SuppressWarnings("SynchronizationOnLocalVariableOrMethodParameter")
     default @NotNull ItemStack add(@NotNull AbstractInventory inv, @NotNull ItemStack item) {
-        var rule = StackingRule.get();
 
         synchronized (inv) {
             for (int slot = 0; slot < size(); slot++) {
                 var get = get(inv, slot);
-                if (!get.isAir() && rule.canBeStacked(item, get)) {
-                    var getAmount = rule.getAmount(get);
-                    var max = rule.getMaxSize(get);
-                    if (getAmount < max) {
-                        var itemAmount = rule.getAmount(item);
-                        var total = itemAmount + getAmount;
-                        if (rule.canApply(item, total)) {
-                            set(inv, slot, rule.apply(get, total));
-                            return rule.apply(item, 0);
+                if (!get.isAir() && item.isSimilar(get)) {
+                    if (get.amount() < get.maxStackSize()) {
+                        var total = item.amount() + get.amount();
+                        if (total <= item.maxStackSize()) {
+                            set(inv, slot, get.withAmount(total));
+                            return ItemStack.AIR;
                         } else {
-                            set(inv, slot, rule.apply(get, max));
-                            item = rule.apply(item, total - max);
+                            set(inv, slot, get.withAmount(get.maxStackSize()));
+                            item = item.withAmount(total - get.maxStackSize());
                         }
                     }
                 }
@@ -257,7 +251,7 @@ public interface InventoryView {
             for (int slot = 0; slot < size(); slot++) {
                 if (get(inv, slot).isAir()) {
                     set(inv, slot, item);
-                    return rule.apply(item, 0);
+                    return ItemStack.AIR;
                 }
             }
         }
