@@ -1,4 +1,4 @@
-package dev.goldenstack.window;
+package net.goldenstack.window;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.IntImmutableList;

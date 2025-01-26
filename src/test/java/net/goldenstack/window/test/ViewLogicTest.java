@@ -1,6 +1,6 @@
-package dev.goldenstack.window.test;
+package net.goldenstack.window.test;
 
-import dev.goldenstack.window.InventoryView;
+import net.goldenstack.window.InventoryView;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;

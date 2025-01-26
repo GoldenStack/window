@@ -7,7 +7,7 @@ plugins {
     id("com.vanniktech.maven.publish") version "0.30.0"
 }
 
-group = "dev.goldenstack.window"
+group = "net.goldenstack.window"
 version = "1.0"
 description = "Useful API for Minestom inventories"
 
