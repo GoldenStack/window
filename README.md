@@ -2,7 +2,6 @@
 
 [![license](https://img.shields.io/github/license/GoldenStack/window?style=for-the-badge&color=dd2233)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=for-the-badge)](https://github.com/RichardLitt/standard-readme)
-[![javadocs](https://img.shields.io/badge/documentation-javadocs-4d7a97?style=for-the-badge)](https://javadoc.jitpack.io/com/github/GoldenStack/window/master-SNAPSHOT/javadoc/)
 
 Useful API for Minestom inventories
 
@@ -38,19 +37,18 @@ No matter how complicated the actual tree structure is, all views can:
 
 ## Install
 
-To install, simply add the library via [JitPack](https://jitpack.io/#GoldenStack/window/-SNAPSHOT):
+To install, simply add the library via Maven Central. For more info (and details for other build tools),
+go [here](https://central.sonatype.com/artifact/net.goldenstack/window).
 
-Details for how to add this library with other build tools (such as Maven) can be found on the page linked above.
 ``` kts
 repositories {
     // ...
-
-    maven("https://jitpack.io")
+    mavenCentral()
 }
 
 dependencies {
     // ...
-    implementation("com.github.GoldenStack:window:VERSION-HERE")
+    implementation("net.goldenstack:window:1.1")
 }
 ```
 
