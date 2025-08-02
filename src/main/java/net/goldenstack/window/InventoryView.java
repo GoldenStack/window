@@ -86,6 +86,16 @@ public interface InventoryView {
     }
 
     /**
+     * Reverses this inventory view, returning a new one with the same size but with all slot IDs reversed.
+     * Specifically, each slot {@code n} becomes slot {@code size() - 1 - n}.
+     * @param base the base inventory to flip the slots of
+     * @return the reversed inventory
+     */
+    static @NotNull InventoryView reversed(@NotNull InventoryView base) {
+        return new InventoryViewImpl.Reversed(base);
+    }
+
+    /**
      * A generic interface for a view that has only one slot, and thus can have simple getters and setters that don't
      * require a slot to be specified.<br>
      * This interface is meant to exclusively make it easier to use single-slot views, so it can be relied upon that
@@ -198,6 +208,14 @@ public interface InventoryView {
      */
     default @NotNull InventoryView fork(int @NotNull ... localSlots) {
         return join(this, arbitrary(localSlots));
+    }
+
+    /**
+     * Returns a reversed copy of this inventory, turning each slot {@code n} into slot {@code size() - 1 - n}.
+     * @return the reversed copy of this inventory
+     */
+    default @NotNull InventoryView reverse() {
+        return reversed(this);
     }
 
     /**

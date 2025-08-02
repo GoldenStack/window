@@ -155,6 +155,22 @@ public class ViewLogicTest {
         assertSlots(arbitrary, IntList.of(0, 1, 2), IntList.of(15, 17, 13));
     }
 
+    @Test
+    public void testReversed() {
+        var base = InventoryView.contiguous(10, 20);
+        var reversed = base.reverse();
+
+        assertEquals(19, reversed.localToExternal(0));
+        assertEquals(14, reversed.localToExternal(5));
+        assertEquals(10, reversed.localToExternal(9));
+        assertSlotRange(reversed.reverse(), 0, 10, 10);
+
+        assertEquals(0, InventoryView.arbitrary().reverse().size());
+
+        var singular = InventoryView.singular(1);
+        assertEquals(singular.localToExternal(0), singular.reverse().localToExternal(0));
+    }
+
     private static void assertSize(@NotNull InventoryView view, int size) {
         assertEquals(size, view.size());
         assertLocalFailures(view, -1, size);

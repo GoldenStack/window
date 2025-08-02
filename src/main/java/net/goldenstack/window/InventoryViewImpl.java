@@ -214,4 +214,28 @@ class InventoryViewImpl {
         }
     }
 
+    // No need to implement singular because the reverse of singular is itself.
+    record Reversed(@NotNull InventoryView base) implements InventoryView {
+
+        @Override
+        public int size() {
+            return base.size();
+        }
+
+        @Override
+        public int localToExternal(int localSlot) {
+            return base.localToExternal(size() - 1 - localSlot);
+        }
+
+        @Override
+        public int externalToLocal(int externalSlot) {
+            return base.externalToLocal(size() - 1 - externalSlot);
+        }
+
+        @Override
+        public boolean isValidExternal(int externalSlot) {
+            return base.isValidExternal(externalSlot);
+        }
+    }
+
 }

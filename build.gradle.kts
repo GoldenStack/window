@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    val minestom = "net.minestom:minestom-snapshots:ebaa2bbf64"
+    val minestom = "net.minestom:minestom:2025.07.30-1.21.8"
     compileOnly(minestom)
     testImplementation(minestom)
 
