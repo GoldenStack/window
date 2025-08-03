@@ -48,7 +48,7 @@ repositories {
 
 dependencies {
     // ...
-    implementation("net.goldenstack:window:1.1")
+    implementation("net.goldenstack:window:1.2")
 }
 ```
 
