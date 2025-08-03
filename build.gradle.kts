@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "net.goldenstack.window"
-version = "1.1"
+version = "1.2"
 description = "Useful API for Minestom inventories"
 
 repositories {
