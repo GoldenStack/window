@@ -133,6 +133,11 @@ var viewC = InventoryView.join(viewA, viewB);
 // about the specific implementation of either, so this method should work with any custom implementation.
 // Thus, the viewC.set(inv, 0) is equivalent to viewA.set(inv, 3)
 
+// Reverse an existing view
+var hotbarReverse = InventoryView.contiguous(0, 9).reverse();
+hotbarReverse.size(); // Still 9
+hotbarReverse.localToExternal(0); // Returns 9
+
 // Create an arbitrary union, allowing complex inventory sectioning
 var arbitraryUnion = InventoryView.union(
         InventoryView.contiguous(0, 1),
@@ -147,7 +152,7 @@ arbitraryUnion.fill(inv, slot -> ItemStack.of(Material.RED_WOOL, slot + 1));
 // You can specify the exact slot IDs and it'll map to them in the order specified
 var arbitraryFork = Views.player().contents().fork(1, 3, 7, 2, 21);
 arbitraryFork.size(); // Returns 5
-arbitraryFork.localToExternal(2); // returns 7
+arbitraryFork.localToExternal(2); // Returns 7
 ```
 
 ## Contributing
